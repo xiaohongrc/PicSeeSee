@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/area"
+        app:showAsAction="always"
+        android:title="@string/girl_area" />
+    <item android:id="@+id/style"
+        android:title="@string/girl_style" />
+    <item android:id="@+id/mGray"
+        android:title="@string/girl_area" />
+</menu>
+
