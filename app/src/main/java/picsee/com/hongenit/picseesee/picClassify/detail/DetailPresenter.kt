@@ -8,12 +8,15 @@ import picsee.com.hongenit.picseesee.util.ToastUtil
 
 /**
  * Created by hongenit on 18/2/2.
+ * 图片详情的presenter
  */
 class DetailPresenter : IDetailPresenter, ZResponse {
 
 
     override fun onSuccess(picList: ArrayList<PicBean>) {
-        mView.replaceData(picList)
+        if (!mView.isFinishing) {
+            mView.replaceData(picList)
+        }
     }
 
     override fun onError(msg: String?) {

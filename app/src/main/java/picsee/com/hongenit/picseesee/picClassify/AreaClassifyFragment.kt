@@ -41,8 +41,9 @@ class AreaClassifyFragment : BaseFragment() {
     private fun getFragmentData(): ArrayList<ClassifyTypeBean?> {
         val classifyTypeList = ArrayList<ClassifyTypeBean?>()
 
-        val zgndFragment = ClassifyTypeBean("http://www.msgao.com/wmtp/gqbz/","中国内地")
-//        val zgndFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/zgnd/","中国内地")
+        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/gqbz/","高清壁纸"))
+
+        val zgndFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/zgnd/","中国内地")
         classifyTypeList.add(zgndFragment)
 
         val twFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/tw/","台湾")

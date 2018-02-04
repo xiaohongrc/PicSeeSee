@@ -44,6 +44,10 @@ dependencies {
 //    implementation 'io.reactivex:rxjava:1.0.9'
     implementation 'org.jetbrains.anko:anko-commons:0.10.4'
 
+    compile 'com.umeng.sdk:common:latest.integration'
+    compile 'com.umeng.sdk:analytics:latest.integration'
+    compile project(':push')
+
 
 
 }

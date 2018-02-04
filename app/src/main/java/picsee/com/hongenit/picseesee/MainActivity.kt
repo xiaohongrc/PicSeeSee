@@ -5,14 +5,16 @@ import android.os.Bundle
 import android.support.v4.app.FragmentTransaction
 import android.view.Menu
 import android.view.MenuItem
+import com.umeng.analytics.MobclickAgent
 import picsee.com.hongenit.picseesee.picClassify.AreaClassifyFragment
 import picsee.com.hongenit.picseesee.picClassify.StyleClassifyFragment
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         initView()
         initData()
@@ -22,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     private fun initView() {
         val supportFragmentManager = supportFragmentManager
         val beginTransaction = supportFragmentManager.beginTransaction()
-        beginTransaction.add(R.id.fl_main_content, AreaClassifyFragment.newInstance())
+        beginTransaction.add(R.id.fl_main_content, StyleClassifyFragment.newInstance())
 
         beginTransaction.commit()
     }
@@ -50,23 +52,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-//        val beginTransaction = supportFragmentManager.beginTransaction()
-//        hideAllFragments(beginTransaction)
-//        when (item?.itemId) {
-//            R.id.area -> {
-//                mAreaFragment?.let {
-//                    beginTransaction.show(it)
-//                } ?: AreaClassifyFragment.newInstance().let {
-//                    mAreaFragment = it
-//                    beginTransaction.add(mAreaFragment, "area")
-//                    beginTransaction.show(it)
-//                }
-//            }
-//            R.id.style -> showStyleClassify(beginTransaction)
-//            R.id.mGray -> showAreaClassify(beginTransaction)
-//        }
+        val beginTransaction = supportFragmentManager.beginTransaction()
+        hideAllFragments()
+        when (item?.itemId) {
+//            R.id.area -> showStyleClassify(beginTransaction)
+            R.id.style -> showStyleClassify(beginTransaction)
+            R.id.mGray -> showAreaClassify(beginTransaction)
+            else->{}
+        }
 
-//        beginTransaction.commit()
+        beginTransaction.commit()
 
 
         return super.onOptionsItemSelected(item)
@@ -79,10 +74,10 @@ class MainActivity : AppCompatActivity() {
     private fun showStyleClassify(transaction: FragmentTransaction) {
         styleClassifyFragment?.let {
             transaction.show(it)
-        } ?: StyleClassifyFragment.getInstance().let {
+        } ?: StyleClassifyFragment.newInstance().let {
             styleClassifyFragment = it
             transaction.add(R.id.fl_main_content, styleClassifyFragment, getString(R.string.girl_style))
-            transaction.show(styleClassifyFragment)
+//            transaction.show(styleClassifyFragment)
         }
     }
 
@@ -90,12 +85,28 @@ class MainActivity : AppCompatActivity() {
      * 隐藏所有的Fragment
      * @param transaction transaction
      */
-    private fun hideAllFragments(transaction: FragmentTransaction) {
+    private fun hideAllFragments() {
         //默认当前这个对象作为闭包的it参数   这里避免了mHomeFragment为null时调用transaction.hide()的问题
+        val transaction = supportFragmentManager.beginTransaction()
         styleClassifyFragment?.let { transaction.hide(it) }
         mAreaFragment?.let { transaction.hide(it) }
+        transaction.commit()
 
     }
+
+
+    override fun onResume() {
+        super.onResume()
+        MobclickAgent.onResume(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        MobclickAgent.onPause(this)
+    }
+
+
+
 
 
 }

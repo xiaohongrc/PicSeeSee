@@ -6,6 +6,7 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import picsee.com.hongenit.picseesee.picClassify.PicBean
 import picsee.com.hongenit.picseesee.picClassify.ZResponse
+import picsee.com.hongenit.picseesee.util.FileUtil
 import picsee.com.hongenit.picseesee.util.LogUtil
 
 /**
@@ -22,7 +23,8 @@ class DetailModel {
             doAsync {
                 try {
                     //连接
-                    val document: Document = Jsoup.connect(url).ignoreContentType(true).get()
+                    val document: Document = FileUtil.getDocumentByUrl(url)
+//                    val document: Document = Jsoup.connect(url).ignoreContentType(true).get()
                     val girlPictureList = document.select("div.div-num")
                     val imageList: ArrayList<PicBean> = ArrayList()
                     girlPictureList.forEach {

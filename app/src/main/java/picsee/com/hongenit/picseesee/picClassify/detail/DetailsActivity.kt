@@ -1,31 +1,28 @@
 package picsee.com.hongenit.picseesee.picClassify.detail
 
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import com.umeng.analytics.MobclickAgent
 import gallerylibrary.CardAdapterHelper
 import gallerylibrary.CardScaleHelper
 import gallerylibrary.util.BlurBitmapUtils
 import gallerylibrary.util.ViewSwitchUtils
 import kotlinx.android.synthetic.main.activity_details.*
-import kotlinx.android.synthetic.main.fragment_common_tab.*
-import kotlinx.android.synthetic.main.item_image_details.*
 import kotlinx.android.synthetic.main.item_image_details.view.*
 import kotlinx.android.synthetic.main.layout_toolbar.*
-import picsee.com.hongenit.picseesee.R
-import picsee.com.hongenit.picseesee.picClassify.PicBean
-import picsee.com.hongenit.picseesee.picClassify.ZResponse
-import picsee.com.hongenit.picseesee.picClassify.commontab.KEY_ARGUMENTS_URL
-import picsee.com.hongenit.picseesee.util.ImageLoadUtil
-import android.graphics.Bitmap
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
+import picsee.com.hongenit.picseesee.BaseActivity
+import picsee.com.hongenit.picseesee.R
+import picsee.com.hongenit.picseesee.picClassify.PicBean
+import picsee.com.hongenit.picseesee.picClassify.commontab.KEY_ARGUMENTS_URL
+import picsee.com.hongenit.picseesee.util.ImageLoadUtil
 import java.io.IOException
 import java.net.HttpURLConnection
 import java.net.URL
@@ -36,7 +33,7 @@ import java.net.URL
  * create at 2018/2/1 16:22
  * description：
  */
-class DetailsActivity : AppCompatActivity() {
+class DetailsActivity : BaseActivity() {
     val mPicList = arrayListOf<PicBean>()
 
     fun replaceData(picList: ArrayList<PicBean>) {
@@ -83,10 +80,12 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
+        MobclickAgent.onResume(this)
         super.onResume()
         mPresenter.start(this)
 
         mPresenter.requestData(mUrl)
+
     }
 
     private fun initBlurBackground() {
@@ -133,7 +132,7 @@ class DetailsActivity : AppCompatActivity() {
      */
     fun getbitmap(imageUri: String): Bitmap? {
         // 显示网络上的图片
-        var bitmap: Bitmap? = null
+        var bitmap: Bitmap?
         try {
             val myFileUrl = URL(imageUri)
             val conn = myFileUrl
@@ -188,7 +187,8 @@ class DetailsActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
             val detailViewHolder = holder as DetailViewHolder
             mCardAdapterHelper.onBindViewHolder(detailViewHolder.itemView, position, mPicList.size)
-            ImageLoadUtil.newInstance()!!.loadImage(this@DetailsActivity, detailViewHolder.itemView.ivDetailPic, mPicList[position].url)
+            val cornerRadius = resources.getDimension(R.dimen.detail_cardview_radius)
+            ImageLoadUtil.newInstance()!!.loadRoundImage(this@DetailsActivity, detailViewHolder.itemView.ivDetailPic, mPicList[position].url,cornerRadius)
 
         }
 
@@ -199,6 +199,14 @@ class DetailsActivity : AppCompatActivity() {
     }
 
     class DetailViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+
+
+
+    override fun onPause() {
+        super.onPause()
+        MobclickAgent.onPause(this)
+    }
+
 
 
 }

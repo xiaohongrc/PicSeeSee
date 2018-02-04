@@ -46,6 +46,8 @@ class CommonTabFragment : BaseFragment() {
     override fun initView() {
         rvList.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         rvList.adapter = HomeAdapter()
+
+        rvList.addItemDecoration(GridItemDecoration(context.dimen(R.dimen.common_item_space)))
         mPresenter = CommonTabPresenter(context)
         mPresenter.setView(this)
         //刷新
@@ -79,6 +81,7 @@ class CommonTabFragment : BaseFragment() {
 
 
     override fun initData() {
+        srlLayout.isRefreshing = true
         mPresenter.start(mUrl)
     }
 
@@ -136,8 +139,10 @@ class CommonTabFragment : BaseFragment() {
     fun replaceData(picList: ArrayList<PicBean>) {
         mPicList.clear()
         mPicList.addAll(picList)
-        rvList.adapter.notifyDataSetChanged()
-        srlLayout.isRefreshing = false
+        if (isVisible){
+            rvList.adapter.notifyDataSetChanged()
+            srlLayout.isRefreshing = false
+        }
 
     }
 

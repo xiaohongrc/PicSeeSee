@@ -24,12 +24,19 @@ class ImageLoadUtil {
         }
     }
 
-    val requestOptions = RequestOptions().placeholder(R.drawable.default_img).error(R.drawable.error_img)
+//    val requestOptions = RequestOptions().placeholder(R.drawable.default_img).error(R.drawable.default_img)
 
     fun loadImage(context: Context, imageView: ImageView, imgUrl: String) {
-        val crossFade = DrawableTransitionOptions().crossFade(100)
+        val crossFade = DrawableTransitionOptions().crossFade(1000)
         Glide.with(context).load(imgUrl).transition(crossFade).into(imageView)
+    }
+
+    fun loadRoundImage(context: Context, imageView: ImageView, imgUrl: String,cornerRadius:Float) {
+        val crossFade = DrawableTransitionOptions().crossFade(100)
+        val requestOptions = RequestOptions().transform(CornersTransform(context, cornerRadius))
+        Glide.with(context).load(imgUrl).transition(crossFade).apply(requestOptions).into(imageView)
     }
 
 
 }
+
