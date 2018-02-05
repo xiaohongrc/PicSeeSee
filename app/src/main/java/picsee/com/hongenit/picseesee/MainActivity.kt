@@ -83,7 +83,7 @@ class MainActivity : BaseActivity() {
 
     /**
      * 隐藏所有的Fragment
-     * @param transaction transaction
+     * @param transaction transacti
      */
     private fun hideAllFragments() {
         //默认当前这个对象作为闭包的it参数   这里避免了mHomeFragment为null时调用transaction.hide()的问题
@@ -97,6 +97,7 @@ class MainActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+        println("test push")
         MobclickAgent.onResume(this)
     }
 
