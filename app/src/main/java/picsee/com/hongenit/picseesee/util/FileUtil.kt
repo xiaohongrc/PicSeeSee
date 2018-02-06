@@ -56,6 +56,8 @@ object FileUtil {
             dirCacheDocument.mkdirs()
         }
         if (dirCacheDocument.exists() && dirCacheDocument.isDirectory) {
+            println("timeee 55555555555555555 "+ SystemClock.currentThreadTimeMillis())
+
             val file = File(dirCacheDocument, fileName)
             file.writeText(document.toString(), Charset.forName("utf-8"))
         }

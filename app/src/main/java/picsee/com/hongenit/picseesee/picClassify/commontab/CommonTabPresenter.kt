@@ -3,6 +3,7 @@ package picsee.com.hongenit.picseesee.picClassify.commontab
 import android.content.Context
 import com.umeng.commonsdk.stateless.UMSLEnvelopeBuild.mContext
 import picsee.com.hongenit.picseesee.R
+import picsee.com.hongenit.picseesee.picClassify.AlbumBean
 import picsee.com.hongenit.picseesee.picClassify.PicBean
 import picsee.com.hongenit.picseesee.picClassify.ZResponse
 import picsee.com.hongenit.picseesee.util.LogUtil
@@ -22,7 +23,7 @@ class CommonTabPresenter(context: Context) : ICommonTabPresenter, ZResponse {
         mContext = context
     }
 
-    override fun onSuccess(picList: ArrayList<PicBean>) {
+    override fun onSuccess(picList: ArrayList<AlbumBean>) {
         if (mView.isVisible) {
             if (isLoadMore) {
                 mView.addData(picList)

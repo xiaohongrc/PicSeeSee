@@ -1,5 +1,7 @@
 package com.example.hongenit.testapplication
 
+import picsee.com.hongenit.picseesee.picClassify.commontab.CommonTabModel
+
 /**
  * Created by hongenit on 18/1/18.
  *
@@ -32,7 +34,10 @@ class TestMain {
 //            }
 //        })
 
-        testLet()
+//        testLet()
+
+
+        CommonTabModel.reqOutList("http://www.win4000.com/wallpaper_192_0_0_",1,null)
 
 
 

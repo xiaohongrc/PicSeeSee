@@ -70,6 +70,7 @@ class AreaClassifyFragment : BaseFragment() {
         val hxFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/hx/","混血")
         classifyTypeList.add(hxFragment)
 
+
         return classifyTypeList
     }
 

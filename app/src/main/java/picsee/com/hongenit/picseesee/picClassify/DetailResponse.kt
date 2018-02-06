@@ -3,9 +3,9 @@ package picsee.com.hongenit.picseesee.picClassify
 /**
  * Created by hongenit on 18/1/31.
  */
-interface ZResponse {
+interface DetailResponse {
 
-    fun onSuccess(picList: ArrayList<AlbumBean>)
+    fun onSuccess(picList: ArrayList<PicBean>)
 
     fun onError(msg: String?)
 }

@@ -4,6 +4,7 @@ import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
+import picsee.com.hongenit.picseesee.picClassify.DetailResponse
 import picsee.com.hongenit.picseesee.picClassify.PicBean
 import picsee.com.hongenit.picseesee.picClassify.ZResponse
 import picsee.com.hongenit.picseesee.util.FileUtil
@@ -18,7 +19,7 @@ private val TAG: String = "DetailModel"
 class DetailModel {
 
     companion object {
-        fun requestDetails(url: String, index: Int, response: ZResponse) {
+        fun requestDetails(url: String, index: Int, response: DetailResponse) {
 
             doAsync {
                 try {

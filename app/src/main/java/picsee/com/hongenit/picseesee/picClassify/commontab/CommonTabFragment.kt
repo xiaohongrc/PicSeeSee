@@ -10,6 +10,7 @@ import kotlinx.android.synthetic.main.fragment_common_tab.*
 import kotlinx.android.synthetic.main.item_common_main.view.*
 import org.jetbrains.anko.dimen
 import picsee.com.hongenit.picseesee.R
+import picsee.com.hongenit.picseesee.picClassify.AlbumBean
 import picsee.com.hongenit.picseesee.picClassify.BaseFragment
 import picsee.com.hongenit.picseesee.picClassify.PicBean
 import picsee.com.hongenit.picseesee.picClassify.detail.DetailsActivity
@@ -21,11 +22,14 @@ import java.util.*
  * 展示分类tab的通用fragment
  */
 
+// url
 const val KEY_ARGUMENTS_URL: String = "KEY_ARGUMENTS_URL"
+
+const val KEY_ARGUMENTS_URL_TYPE: String = "KEY_ARGUMENTS_URL_TYPE"
 
 class CommonTabFragment : BaseFragment() {
 
-    var mPicList: ArrayList<PicBean> = arrayListOf()
+    var mPicList: ArrayList<AlbumBean> = arrayListOf()
 
     companion object {
         fun getInstance(url: String): CommonTabFragment? {
@@ -136,7 +140,7 @@ class CommonTabFragment : BaseFragment() {
     }
 
     // 刷新数据
-    fun replaceData(picList: ArrayList<PicBean>) {
+    fun replaceData(picList: ArrayList<AlbumBean>) {
         mPicList.clear()
         mPicList.addAll(picList)
         if (isVisible){
@@ -147,7 +151,7 @@ class CommonTabFragment : BaseFragment() {
     }
 
     // 加载更多时添加数据
-    fun addData(picList: ArrayList<PicBean>) {
+    fun addData(picList: ArrayList<AlbumBean>) {
         mPicList.addAll(picList)
         rvList.adapter.notifyDataSetChanged()
         srlLayout.isRefreshing = false

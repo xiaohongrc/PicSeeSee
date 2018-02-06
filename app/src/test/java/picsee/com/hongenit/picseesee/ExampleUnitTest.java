@@ -1,5 +1,7 @@
 package picsee.com.hongenit.picseesee;
 
+import com.example.hongenit.testapplication.TestMain;
+
 import org.junit.Test;
 
 import picsee.com.hongenit.picseesee.util.EnDecryptUtil;
@@ -13,8 +15,8 @@ import picsee.com.hongenit.picseesee.util.FileUtil;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-//        TestMain testMain = new TestMain();
-//        testMain.main();
+        TestMain testMain = new TestMain();
+        testMain.main();
 
 
     }
