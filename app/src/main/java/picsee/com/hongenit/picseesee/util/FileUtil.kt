@@ -1,11 +1,16 @@
 package picsee.com.hongenit.picseesee.util
 
+import android.content.Context
+import android.os.Environment
 import android.os.SystemClock
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import picsee.com.hongenit.picseesee.Constants
+import picsee.com.hongenit.picseesee.Constants.APP_DIR
+import picsee.com.hongenit.picseesee.PicSeeApplication
 import java.io.File
 import java.nio.charset.Charset
+
 
 /**
  * Created by hongenit on 2018/2/4.
@@ -42,7 +47,7 @@ object FileUtil {
         if (!isCacheFileExist(fileName)){
             return ""
         }
-        val dirCacheDocument = Constants.CACHE_DOCUMENTS
+        val dirCacheDocument = getCacheDir()
         val file = File(dirCacheDocument, fileName)
         val text = file.readText(Charset.forName("utf-8"))
         return text
@@ -50,7 +55,7 @@ object FileUtil {
 
     // 缓存document
     private fun cacheDocument(fileName: String, document: Document?) {
-        val dirCacheDocument = Constants.CACHE_DOCUMENTS
+        val dirCacheDocument = getCacheDir()
 
         if (!dirCacheDocument.exists()) {
             dirCacheDocument.mkdirs()
@@ -65,7 +70,7 @@ object FileUtil {
 
 
     private fun isCacheFileExist(fileName: String): Boolean {
-        val dirCacheDocument = Constants.CACHE_DOCUMENTS
+        val dirCacheDocument = getCacheDir()
 //            val file = File(dirCacheDocument, fileName)
         if (dirCacheDocument.exists() && dirCacheDocument.isDirectory() && dirCacheDocument.list() != null) {
             val fileList = dirCacheDocument.list()
@@ -74,6 +79,19 @@ object FileUtil {
             }
         }
         return false
+    }
+
+
+    fun getCacheDir(): File {
+        var cachePath: String? = null
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageRemovable()) {
+            cachePath = PicSeeApplication.getAppContext()!!.getExternalCacheDir().getPath()
+            LogUtil.d("-----------1111111",cachePath)
+        } else {
+            cachePath = PicSeeApplication.getAppContext()!!.getCacheDir().getPath()
+            LogUtil.d("-----------22222",cachePath)
+        }
+        return  File(cachePath,"cache_documents")
     }
 
 
