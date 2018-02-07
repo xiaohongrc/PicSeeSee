@@ -36,7 +36,11 @@ class CommonTabPresenter(context: Context) : ICommonTabPresenter, ZResponse {
 
     override fun onError(msg: String?) {
         LogUtil.e(TAG, "error = $msg")
-        ToastUtil.showToast(mContext.getString(R.string.msg_get_data_error))
+        if (isLoadMore){
+            ToastUtil.showToast(mContext.getString(R.string.no_more_data))
+        }else{
+            ToastUtil.showToast(mContext.getString(R.string.msg_get_data_error))
+        }
     }
 
     override fun start(url: String) {

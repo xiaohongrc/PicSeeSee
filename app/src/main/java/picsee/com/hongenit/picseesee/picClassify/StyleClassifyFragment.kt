@@ -39,18 +39,47 @@ class StyleClassifyFragment : BaseFragment() {
         val classifyTypeList = ArrayList<ClassifyTypeBean?>()
 
 
-        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2339_0_0","节日"))
-        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2346_0_0","动漫"))
-        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/mxtp/","明星"))
-        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/gqbz/","壁纸"))
-        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/dmtp/","动漫"))
-        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/qctp/","汽车"))
-        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/bjtp/","背景"))
-        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/fzltp/","非主流"))
+
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2340_0_0", "美女"))
+
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2338_0_0", "明星"))
+
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2341_0_0", "风景"))
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2342_0_0", "汽车"))
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2343_0_0", "可爱"))
+
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2346_0_0", "动漫"))
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2351_0_0", "非主流"))
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2355_0_0", "宠物"))
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2349_0_0", "卡通"))
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2359_0_0", "治愈系"))
+
+
+//        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/gqbz/","壁纸"))
+//        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/dmtp/","动漫"))
+//        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/qctp/","汽车"))
+//        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/bjtp/","背景"))
+//        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/fzltp/","非主流"))
 
 
         return classifyTypeList
     }
+
+//
+//    fun getDisOrderList(orderList: ArrayList<ClassifyTypeBean?>): ArrayList<ClassifyTypeBean?> {
+//        val size = orderList.size
+//        val tempList = ArrayList<ClassifyTypeBean?>()
+//
+//
+//        for (i in size downTo 0) {
+//            val ran = (Math.random() * i).toInt()
+//            val randomValue = orderList.removeAt(ran)
+//            tempList.add(randomValue)
+//        }
+//
+//        return tempList
+//
+//    }
 
 
 }

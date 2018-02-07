@@ -18,8 +18,14 @@ class PicSeeApplication : Application() {
     override fun onCreate() {
         LogUtil.d(TAG, "oncreate")
         sContext = applicationContext
+        val start = System.currentTimeMillis()
+        println(start)
         initUmeng()
         initUmengPush()
+
+        val space = System.currentTimeMillis() -start
+        println(space)
+
         super.onCreate()
 
     }

@@ -39,38 +39,43 @@ class AreaClassifyFragment : BaseFragment() {
     }
 
     private fun getFragmentData(): ArrayList<ClassifyTypeBean?> {
-        val classifyTypeList = ArrayList<ClassifyTypeBean?>()
 
-        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/gqbz/","高清壁纸"))
+        val classifyTypeSet = HashSet<ClassifyTypeBean?>()
 
-        val zgndFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/zgnd/","中国内地")
-        classifyTypeList.add(zgndFragment)
+        classifyTypeSet.add(ClassifyTypeBean("http://www.msgao.com/wmtp/gqbz/", "高清壁纸"))
+        val zgndFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/zgnd/", "中国内地")
+        classifyTypeSet.add(zgndFragment)
 
-        val twFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/tw/","台湾")
-        classifyTypeList.add(twFragment)
+        val twFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/tw/", "台湾")
+        classifyTypeSet.add(twFragment)
 
-        val xgFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/xg/","香港")
-        classifyTypeList.add(xgFragment)
+        val xgFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/xg/", "香港")
+        classifyTypeSet.add(xgFragment)
 
-        val rbFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/rb/","日本")
-        classifyTypeList.add(rbFragment)
+        val rbFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/rb/", "日本")
+        classifyTypeSet.add(rbFragment)
 
-        val hgFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/hg/","韩国")
-        classifyTypeList.add(hgFragment)
+        val hgFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/hg/", "韩国")
+        classifyTypeSet.add(hgFragment)
 
-        val mlxyFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/mlxy/","马来西亚")
-        classifyTypeList.add(mlxyFragment)
+        val mlxyFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/mlxy/", "马来西亚")
+        classifyTypeSet.add(mlxyFragment)
 
-        val tgFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/tg/","泰国")
-        classifyTypeList.add(tgFragment)
+        val tgFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/tg/", "泰国")
+        classifyTypeSet.add(tgFragment)
 
-        val omFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/om/","欧美")
-        classifyTypeList.add(omFragment)
+        val omFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/om/", "欧美")
+        classifyTypeSet.add(omFragment)
 
-        val hxFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/hx/","混血")
-        classifyTypeList.add(hxFragment)
+        val hxFragment = ClassifyTypeBean("http://www.msgao.com/dqfl/hx/", "混血")
+        classifyTypeSet.add(hxFragment)
 
 
+//        将无序set转成有序list
+        var classifyTypeList = ArrayList<ClassifyTypeBean?>()
+        for (bean in classifyTypeSet) {
+            classifyTypeList.add(bean)
+        }
         return classifyTypeList
     }
 
