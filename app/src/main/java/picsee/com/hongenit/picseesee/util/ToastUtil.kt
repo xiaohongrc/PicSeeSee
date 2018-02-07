@@ -9,7 +9,7 @@ import picsee.com.hongenit.picseesee.PicSeeApplication
  */
 object ToastUtil {
     fun showToast(msg: String) {
-        Toast.makeText(PicSeeApplication.getAppContext(), msg, Toast.LENGTH_LONG).show()
+        Toast.makeText(PicSeeApplication.getAppContext(), msg, Toast.LENGTH_SHORT).show()
     }
 
 
