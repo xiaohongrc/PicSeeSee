@@ -83,9 +83,12 @@ class DetailsActivity : BaseActivity() {
         MobclickAgent.onResume(this)
         super.onResume()
         mPresenter.start(this)
-
         mPresenter.requestData(mUrl)
 
+    }
+
+    fun showLoadingView(show:Boolean){
+        loadingView.visibility = if (show) View.VISIBLE else View.GONE
     }
 
     private fun initBlurBackground() {
@@ -143,7 +146,7 @@ class DetailsActivity : BaseActivity() {
             bitmap = BitmapFactory.decodeStream(inputStream)
             inputStream.close()
 
-        } catch (e: OutOfMemoryError) {
+        } catch (e: Error) {
             e.printStackTrace()
             bitmap = null
         } catch (e: IOException) {
@@ -188,7 +191,16 @@ class DetailsActivity : BaseActivity() {
             val detailViewHolder = holder as DetailViewHolder
             mCardAdapterHelper.onBindViewHolder(detailViewHolder.itemView, position, mPicList.size)
             val cornerRadius = resources.getDimension(R.dimen.detail_cardview_radius)
-            ImageLoadUtil.newInstance()!!.loadRoundImage(this@DetailsActivity, detailViewHolder.itemView.ivDetailPic, mPicList[position].url,cornerRadius)
+            ImageLoadUtil.newInstance()!!.loadRoundImage(this@DetailsActivity, detailViewHolder.itemView.ivDetailPic, mPicList[position].url,cornerRadius,object : ImageLoadUtil.ImageLoadListener{
+                override fun onLoadComplete() {
+                    detailViewHolder.itemView.loadingView.visibility = View.GONE
+                }
+
+                override fun onLoadFailed() {
+                    detailViewHolder.itemView.tvLoadImageFail.visibility = View.VISIBLE
+                    detailViewHolder.itemView.loadingView.visibility = View.GONE
+                }
+            })
 
         }
 

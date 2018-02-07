@@ -22,34 +22,31 @@ private val TAG: String = "CommonTabModel"
 
 
 //http://www.win4000.com/wallpaper_192_0_0_1.html
+const val WEBSITE_PREFIX_MSGAO = "http://www.msgao"
+const val WEBSITE_PREFIX_WIN4000 = "http://www.win4000"
 
 class CommonTabModel {
     companion object {
         fun reqOutList(url: String, index: Int, response: ZResponse?) {
             doAsync {
                 try {
-
+                    LogUtil.i(TAG, "url = $url")
 
                     //组装url
                     var buildUrl = buildUrl(url, index)
 
-//                    LogUtil.e(TAG, "buildUrl = $buildUrl")
+                    LogUtil.e(TAG, "buildUrl = $buildUrl")
 
                     //连接
 //                    val document: Document = Jsoup.connect(buildUrl).get()
                     val document: Document = FileUtil.getDocumentByUrl(buildUrl!!)
 
-
-//                    LogUtil.e(TAG, document.toString())
-
-
                     //外层列表的bean集合
                     var outLists: ArrayList<AlbumBean> = arrayListOf()
-                    LogUtil.i(TAG, "url = $url")
 
                     when (getUrlPrefix(url)) {
-                        "http://www.msgao" -> outLists = getAlbumList(document)
-                        "http://www.win4000" -> outLists = getAlbumList2(document)
+                        WEBSITE_PREFIX_MSGAO -> outLists = getAlbumList(document)
+                        WEBSITE_PREFIX_WIN4000 -> outLists = getAlbumList2(document)
                     }
 
                     LogUtil.i(TAG, outLists.toString())
@@ -64,6 +61,15 @@ class CommonTabModel {
             }
         }
 
+
+
+        /**
+            <a href="http://zgnd.msgao.com/dqfl/534977.shtml" class="link">
+            <div class="div-img"><img src="http://img.gqcsswj.com/upload/resources/image/2016/09/05/42375.jpg" class="img" style="width:234px;height:346px;" alt="伍月yuer-&#32;[TGOD]&#32;嘟嘟" />
+            <div class="div-text"><div class="text-title text2">伍月yuer-&#32;[TGOD推]&#32;嘟嘟</div></div>
+            <div class="hover"><i class="icon icon-ic-pic-view"></i></div>
+            </div></a>
+         */
         private fun getAlbumList(document: Document): ArrayList<AlbumBean> {
             //筛选首页全部的链接   暂时是第一页的
             val htmls: Elements = document.select("a[href$=.shtml]")
@@ -97,16 +103,6 @@ class CommonTabModel {
                 outLists.add(albumBean)
             }
             return outLists
-
-
-            /**
-            <a href="http://zgnd.msgao.com/dqfl/534977.shtml" class="link">
-            <div class="div-img">
-            <img src="http://img.gqcsswj.com/upload/resources/image/2016/09/05/42375.jpg" class="img" style="width:234px;height:346px;" alt="伍月yuer-&#32;[TGOD]&#32;嘟嘟" />
-            <div class="div-text"><div class="text-title text2">伍月yuer-&#32;[TGOD推]&#32;嘟嘟</div></div>
-            <div class="hover"><i class="icon icon-ic-pic-view"></i></div>
-            </div></a>
-             */
         }
 
 
@@ -116,12 +112,6 @@ class CommonTabModel {
         <img src="http://static.win4000.com/home/images/placeholder.jpg" data-original="http://pic1.win4000.com/wallpaper/2017-12-20/5a3a31d2d273a_270_185.jpg" alt="《紫罗兰永恒花园》薇尔莉特高清宽屏壁纸" title="《紫罗兰永恒花园》薇尔莉特高清宽屏壁纸"/>
         <p>《紫罗兰永恒花园》薇尔莉特高清宽屏壁纸</p>
         </a>
-
-        <a href="/wallpaper_detail_142534.html" target="_blank">
-        <img src="http://static.win4000.com/home/images/placeholder.jpg" data-original = "http://pic1.win4000.com/tj/2018-01-25/5a698ff85af41.jpg" alt="亮丽自然风景图片高清宽屏桌面壁纸" title="亮丽自然风景图片高清宽屏桌面壁纸"/>
-        <p>亮丽自然风景图片高清宽屏桌面壁纸</p>
-        </a>
-
 
         <a href="/wallpaper_detail_142530.html" target="_blank">
         <img src="http://static.win4000.com/home/images/placeholder.jpg" data-original="http://pic1.win4000.com/tj/2018-01-25/5a699062df110.jpg" alt="拙政园唯美冬日雪景高清桌面壁纸" title="拙政园唯美冬日雪景高清桌面壁纸">
@@ -176,11 +166,11 @@ class CommonTabModel {
             var buildUrl: String? = null
             var urlPrefix = getUrlPrefix(url)
             when (urlPrefix) {
-                "http://www.msgao" -> {
+                WEBSITE_PREFIX_MSGAO -> {
                     buildUrl = "${url}index${if (index == 1) "" else "_$index"}.shtml"
                 }
 
-                "http://www.win4000" -> buildUrl = "${url}_$index.html"
+                WEBSITE_PREFIX_WIN4000 -> buildUrl = "${url}_$index.html"
 
             }
 

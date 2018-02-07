@@ -37,13 +37,19 @@ class TestMain {
 //        testLet()
 
 
-        CommonTabModel.reqOutList("http://www.win4000.com/wallpaper_192_0_0_",1,null)
-
-
-
+        println(getImgUrlByThumbnail("http://pic1.win4000.com/mobile/2018-02-05/5a7814b935bec_130_170.jpg"))
 
     }
 
+    private fun getImgUrlByThumbnail(thumbnailsUrl: String): String? {
+        var imgUrl: String? = null
+        val start: Int = thumbnailsUrl.indexOf("_")
+        val end: Int = thumbnailsUrl.indexOf(".jpg", 0, true)
+        if (start != -1 && end != -1) {
+            imgUrl = thumbnailsUrl.replaceRange(start, end, "")
+        }
+        return imgUrl
+    }
 
 
     // 使用？.let关键字，闭包函数中的it可代表该对象。当该对象为空时，闭包函数不执行。

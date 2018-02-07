@@ -2,9 +2,12 @@ package picsee.com.hongenit.picseesee.picClassify.detail
 
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.fragment_common_tab.*
+import picsee.com.hongenit.picseesee.PicSeeApplication
+import picsee.com.hongenit.picseesee.R
 import picsee.com.hongenit.picseesee.picClassify.DetailResponse
 import picsee.com.hongenit.picseesee.picClassify.PicBean
 import picsee.com.hongenit.picseesee.picClassify.ZResponse
+import picsee.com.hongenit.picseesee.util.LogUtil
 import picsee.com.hongenit.picseesee.util.ToastUtil
 
 /**
@@ -12,16 +15,20 @@ import picsee.com.hongenit.picseesee.util.ToastUtil
  * 图片详情的presenter
  */
 class DetailPresenter : IDetailPresenter, DetailResponse {
-
+    val TAG: String = "DetailPresenter"
 
     override fun onSuccess(picList: ArrayList<PicBean>) {
         if (!mView.isFinishing) {
             mView.replaceData(picList)
         }
+        mView.showLoadingView(false)
+
     }
 
     override fun onError(msg: String?) {
-        ToastUtil.showToast(msg.toString())
+        LogUtil.e(TAG, "msg = $msg")
+        ToastUtil.showToast(PicSeeApplication.getAppContext()!!.getString(R.string.load_detail_error))
+        mView.showLoadingView(false)
     }
 
 
@@ -36,6 +43,7 @@ class DetailPresenter : IDetailPresenter, DetailResponse {
     }
 
     override fun requestData(url: String) {
+        mView.showLoadingView(true)
         DetailModel.requestDetails(url, 1, this)
     }
 }

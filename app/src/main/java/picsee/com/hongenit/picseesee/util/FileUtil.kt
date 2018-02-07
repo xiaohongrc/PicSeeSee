@@ -18,6 +18,18 @@ import java.nio.charset.Charset
  */
 object FileUtil {
 
+
+//    http://www.win4000.com/mobile_detail_143195_2.html
+//    http://pic1.win4000.com/mobile/2018-02-05/5a7814bfcf8ae.jpg
+
+//    http://pic1.win4000.com/mobile/2018-02-05/5a7814d61fedf_130_170.jpg
+
+//    http://www.win4000.com/mobile_detail_143195_3.html
+//    http://pic1.win4000.com/mobile/2018-02-05/5a7814cd74837.jpg
+
+//    http://pic1.win4000.com/mobile/2018-02-05/5a7814d12c281.jpg
+
+
     // 根据url获取HTML文档
     fun getDocumentByUrl(buildUrl: String): Document {
         println("timeee 2000 = "+ SystemClock.currentThreadTimeMillis())
@@ -84,13 +96,13 @@ object FileUtil {
 
     fun getCacheDir(): File {
         var cachePath: String? = null
-        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageRemovable()) {
-            cachePath = PicSeeApplication.getAppContext()!!.getExternalCacheDir().getPath()
-            LogUtil.d("-----------1111111",cachePath)
-        } else {
+//        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState()) || !Environment.isExternalStorageRemovable()) {
+//            cachePath = PicSeeApplication.getAppContext()!!.getExternalCacheDir().getPath()
+//            LogUtil.d("-----------1111111",cachePath)
+//        } else {
             cachePath = PicSeeApplication.getAppContext()!!.getCacheDir().getPath()
             LogUtil.d("-----------22222",cachePath)
-        }
+//        }
         return  File(cachePath,"cache_documents")
     }
 

@@ -3,4 +3,6 @@
     <string name="girl_style">类型</string>
     <string name="girl_area">区域划分</string>
     <string name="msg_get_data_error">获取数据失败</string>
+    <string name="load_detail_error">获取图集失败</string>
+    <string name="load_image_error">加载图片失败</string>
 </resources>

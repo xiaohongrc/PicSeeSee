@@ -31,68 +31,68 @@ class MainActivity : BaseActivity() {
 
     private var mAreaFragment: AreaClassifyFragment? = null
 
-    // 展示默认的地区分类
-    private fun showAreaClassify(transaction: FragmentTransaction) {
-        if (mAreaFragment == null) {
-            mAreaFragment = AreaClassifyFragment.newInstance()
-            transaction.add(R.id.fl_main_content, mAreaFragment)
-        } else {
-            transaction.show(mAreaFragment)
-        }
-
-    }
+//    // 展示默认的地区分类
+//    private fun showAreaClassify(transaction: FragmentTransaction) {
+//        if (mAreaFragment == null) {
+//            mAreaFragment = AreaClassifyFragment.newInstance()
+//            transaction.add(R.id.fl_main_content, mAreaFragment)
+//        } else {
+//            transaction.show(mAreaFragment)
+//        }
+//
+//    }
 
     private fun initData() {
 
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_filter, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.menu_filter, menu)
+//        return super.onCreateOptionsMenu(menu)
+//    }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val beginTransaction = supportFragmentManager.beginTransaction()
-        hideAllFragments()
-        when (item?.itemId) {
-//            R.id.area -> showStyleClassify(beginTransaction)
-            R.id.style -> showStyleClassify(beginTransaction)
-            R.id.mGray -> showAreaClassify(beginTransaction)
-            else->{}
-        }
+//    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+//        val beginTransaction = supportFragmentManager.beginTransaction()
+//        hideAllFragments()
+//        when (item?.itemId) {
+////            R.id.area -> showStyleClassify(beginTransaction)
+//            R.id.style -> showStyleClassify(beginTransaction)
+//            R.id.mGray -> showAreaClassify(beginTransaction)
+//            else->{}
+//        }
+//
+//        beginTransaction.commit()
+//
+//
+//        return super.onOptionsItemSelected(item)
+//    }
 
-        beginTransaction.commit()
 
+//    private var styleClassifyFragment: StyleClassifyFragment? = null
 
-        return super.onOptionsItemSelected(item)
-    }
+//    // 展示风格分类
+//    private fun showStyleClassify(transaction: FragmentTransaction) {
+//        styleClassifyFragment?.let {
+//            transaction.show(it)
+//        } ?: StyleClassifyFragment.newInstance().let {
+//            styleClassifyFragment = it
+//            transaction.add(R.id.fl_main_content, styleClassifyFragment, getString(R.string.girl_style))
+////            transaction.show(styleClassifyFragment)
+//        }
+//    }
 
-
-    private var styleClassifyFragment: StyleClassifyFragment? = null
-
-    // 展示风格分类
-    private fun showStyleClassify(transaction: FragmentTransaction) {
-        styleClassifyFragment?.let {
-            transaction.show(it)
-        } ?: StyleClassifyFragment.newInstance().let {
-            styleClassifyFragment = it
-            transaction.add(R.id.fl_main_content, styleClassifyFragment, getString(R.string.girl_style))
-//            transaction.show(styleClassifyFragment)
-        }
-    }
-
-    /**
-     * 隐藏所有的Fragment
-     * @param transaction transacti
-     */
-    private fun hideAllFragments() {
-        //默认当前这个对象作为闭包的it参数   这里避免了mHomeFragment为null时调用transaction.hide()的问题
-        val transaction = supportFragmentManager.beginTransaction()
-        styleClassifyFragment?.let { transaction.hide(it) }
-        mAreaFragment?.let { transaction.hide(it) }
-        transaction.commit()
-
-    }
+//    /**
+//     * 隐藏所有的Fragment
+//     * @param transaction transacti
+//     */
+//    private fun hideAllFragments() {
+//        //默认当前这个对象作为闭包的it参数   这里避免了mHomeFragment为null时调用transaction.hide()的问题
+//        val transaction = supportFragmentManager.beginTransaction()
+//        styleClassifyFragment?.let { transaction.hide(it) }
+//        mAreaFragment?.let { transaction.hide(it) }
+//        transaction.commit()
+//
+//    }
 
 
     override fun onResume() {
