@@ -14,6 +14,7 @@ import picsee.com.hongenit.picseesee.picClassify.AlbumBean
 import picsee.com.hongenit.picseesee.picClassify.BaseFragment
 import picsee.com.hongenit.picseesee.picClassify.PicBean
 import picsee.com.hongenit.picseesee.picClassify.detail.DetailsActivity
+import picsee.com.hongenit.picseesee.util.EventUtil
 import picsee.com.hongenit.picseesee.util.ImageLoadUtil
 import java.util.*
 
@@ -108,6 +109,9 @@ class CommonTabFragment : BaseFragment() {
             val picBean = mPicList[pos]
             val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra(KEY_ARGUMENTS_URL, picBean.detailLink)
+            EventUtil.tab_url_click(mUrl)
+            EventUtil.detail_url_click(picBean.detailLink)
+
             context.startActivity(intent)
         }
 
@@ -143,7 +147,7 @@ class CommonTabFragment : BaseFragment() {
     fun replaceData(picList: ArrayList<AlbumBean>) {
         mPicList.clear()
         mPicList.addAll(picList)
-        if (isVisible){
+        if (isVisible) {
             rvList.adapter.notifyDataSetChanged()
             srlLayout.isRefreshing = false
         }

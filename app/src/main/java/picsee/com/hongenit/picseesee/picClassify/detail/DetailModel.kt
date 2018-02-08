@@ -67,7 +67,7 @@ class DetailModel {
                             var thumbnailsUrl = it.attr("data-original")
                             var imgUrl = getImgUrlByThumbnail(thumbnailsUrl)
                             if (imgUrl != null) {
-                                val picBean = PicBean(imgUrl!!, "", "")
+                                val picBean = PicBean(imgUrl, "", "")
                                 LogUtil.e(TAG, picBean.toString())
                                 imageList.add(picBean)
                             }
