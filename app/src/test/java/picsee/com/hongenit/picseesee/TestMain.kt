@@ -1,14 +1,12 @@
 package com.example.hongenit.testapplication
 
+import picsee.com.hongenit.picseesee.picClassify.ClassifyTypeBean
 import picsee.com.hongenit.picseesee.picClassify.commontab.CommonTabModel
 
 /**
  * Created by hongenit on 18/1/18.
  *
  */
-
-
-
 
 
 class TestMain {
@@ -37,31 +35,57 @@ class TestMain {
 //        testLet()
 
 
-        println(getImgUrlByThumbnail("http://pic1.win4000.com/mobile/2018-02-05/5a7814b935bec_130_170.jpg"))
+        val classifyTypeList = ArrayList<ClassifyTypeBean?>()
+
+
+
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2340_0_0", "美女"))
+
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2338_0_0", "明星"))
+
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2341_0_0", "风景"))
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2342_0_0", "汽车"))
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2343_0_0", "可爱"))
+
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2346_0_0", "动漫"))
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2351_0_0", "非主流"))
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2355_0_0", "宠物"))
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2349_0_0", "卡通"))
+        classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2359_0_0", "治愈系"))
+
+        println(getDisOrderList(classifyTypeList))
 
     }
 
-    private fun getImgUrlByThumbnail(thumbnailsUrl: String): String? {
-        var imgUrl: String? = null
-        val start: Int = thumbnailsUrl.indexOf("_")
-        val end: Int = thumbnailsUrl.indexOf(".jpg", 0, true)
-        if (start != -1 && end != -1) {
-            imgUrl = thumbnailsUrl.replaceRange(start, end, "")
+
+    fun getDisOrderList(orderList: ArrayList<ClassifyTypeBean?>): ArrayList<ClassifyTypeBean?> {
+        val size = orderList.size
+        val tempList = ArrayList<ClassifyTypeBean?>()
+
+
+        for (i in size downTo 1) {
+            val ran = (Math.random() * i).toInt()
+            println(ran)
+            val randomValue = orderList.removeAt(ran)
+            println(randomValue)
+            tempList.add(randomValue)
         }
-        return imgUrl
+
+        return tempList
+
     }
 
 
     // 使用？.let关键字，闭包函数中的it可代表该对象。当该对象为空时，闭包函数不执行。
-    fun testLet(){
-        var student: Student?  = null
+    fun testLet() {
+        var student: Student? = null
         var person: Person = Student()
 
         student?.let {
             println("sssss")
             println(it.soutName())
 
-        }?: person.let {
+        } ?: person.let {
             println("pppp")
             it.soutName()
         }
@@ -69,20 +93,20 @@ class TestMain {
     }
 
 
-
     // 抽象类不能被创建，必须前前加object:
-    fun absClassAndInnerClass(abslass: AbsClass){
+    fun absClassAndInnerClass(abslass: AbsClass) {
         abslass.absFun()
     }
+
     // 与Java一样，有抽象方法必须是抽象类
-    abstract class AbsClass{
+    abstract class AbsClass {
         abstract fun absFun()
     }
 
     // kotlin继承时被继承的父类必须是open，没有open修饰的函数不可以被重写，但是可以被继承和使用。
-    fun testExtends(){
-        var  student =  Student()
-        var  person :Person?
+    fun testExtends() {
+        var student = Student()
+        var person: Person?
         person = student
         person.soutName()
 

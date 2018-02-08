@@ -54,32 +54,32 @@ class StyleClassifyFragment : BaseFragment() {
         classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2349_0_0", "卡通"))
         classifyTypeList.add(ClassifyTypeBean("http://www.win4000.com/mobile_2359_0_0", "治愈系"))
 
-
 //        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/gqbz/","壁纸"))
 //        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/dmtp/","动漫"))
 //        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/qctp/","汽车"))
 //        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/bjtp/","背景"))
 //        classifyTypeList.add(ClassifyTypeBean("http://www.msgao.com/wmtp/fzltp/","非主流"))
 
-
-        return classifyTypeList
+        return getDisOrderList(classifyTypeList)
     }
 
-//
-//    fun getDisOrderList(orderList: ArrayList<ClassifyTypeBean?>): ArrayList<ClassifyTypeBean?> {
-//        val size = orderList.size
-//        val tempList = ArrayList<ClassifyTypeBean?>()
-//
-//
-//        for (i in size downTo 0) {
-//            val ran = (Math.random() * i).toInt()
-//            val randomValue = orderList.removeAt(ran)
-//            tempList.add(randomValue)
-//        }
-//
-//        return tempList
-//
-//    }
+    /**
+     * ji将ArrayList乱序
+     */
+    fun getDisOrderList(orderList: ArrayList<ClassifyTypeBean?>): ArrayList<ClassifyTypeBean?> {
+        val size = orderList.size
+        val tempList = ArrayList<ClassifyTypeBean?>()
 
 
+        for (i in size downTo 1) {
+            val ran = (Math.random() * i).toInt()
+            println(ran)
+            val randomValue = orderList.removeAt(ran)
+            println(randomValue)
+            tempList.add(randomValue)
+        }
+
+        return tempList
+
+    }
 }

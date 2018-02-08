@@ -11,20 +11,16 @@ import picsee.com.hongenit.picseesee.util.LogUtil
 
 /**
  * Created by hongenit on 18/2/1.
- *
+ * function:
  */
 class PicSeeApplication : Application() {
     val TAG = "PicSeeApplication"
     override fun onCreate() {
-        LogUtil.d(TAG, "oncreate")
         sContext = applicationContext
         val start = System.currentTimeMillis()
         println(start)
         initUmeng()
         initUmengPush()
-
-        val space = System.currentTimeMillis() -start
-        println(space)
 
         super.onCreate()
 
@@ -55,7 +51,7 @@ class PicSeeApplication : Application() {
     }
 
     companion object {
-        var sContext: Context? = null
+        lateinit var sContext: Context
 
         fun getAppContext(): Context? {
             return sContext
