@@ -9,7 +9,7 @@ import kotlin.math.log
  */
 object LogUtil {
 
-    const val willLog = true
+    const val willLog = false
 
     fun i(tag: String, message: String) {
         if (willLog) {

@@ -38,7 +38,7 @@
         <!--渠道名-->
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="tencent" />
+            android:value="anzhi" />
         <!--push key-->
         <meta-data
             android:name="UMENG_MESSAGE_SECRET"

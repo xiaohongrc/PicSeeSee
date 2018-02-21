@@ -45,7 +45,7 @@ class PicSeeApplication : Application() {
 
 
     private fun initUmeng() {
-        UMConfigure.init(this, "5a76fd12f43e482b7600039f", "tencent", UMConfigure.DEVICE_TYPE_PHONE, "7949ff424302b34a1fb5ffc0d2cec3b9")
+        UMConfigure.init(this, "5a76fd12f43e482b7600039f", "anzhi", UMConfigure.DEVICE_TYPE_PHONE, "7949ff424302b34a1fb5ffc0d2cec3b9")
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL)
         UMConfigure.setLogEnabled(true)
     }

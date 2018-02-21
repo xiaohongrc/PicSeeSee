@@ -14,7 +14,7 @@
         app:tabIndicatorColor="@color/colorAccent"
         app:tabSelectedTextColor="@color/colorAccent"
         app:tabTextAppearance="@style/TabLayoutTextAppearance"
-        app:tabTextColor="@color/color_translucent_white"/>
+        app:tabTextColor="@color/white"/>
 
     <!--用于盛放不同的板块-->
     <android.support.v4.view.ViewPager
